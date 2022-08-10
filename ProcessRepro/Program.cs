@@ -6,22 +6,22 @@ namespace ProcessRepro
 {
     class Program
     {
-        static async Task Main(string[] args)
+        static async Task Main()
         {
             Console.WriteLine("ProcessRepro start.");
-            ProcessStartInfo cmdStartInfo = new ProcessStartInfo
+            ProcessStartInfo cmdStartInfo = new()
             {
                 UseShellExecute = false,
                 CreateNoWindow = true,
-                FileName = @"C:\Program Files\dotnet\dotnet.exe",
-                Arguments = @"C:\Users\nicolas.vandeginste\source\repos\ProcessRepro\SubProcess\bin\Debug\net5.0\SubProcess.dll",
+                FileName = @"dotnet",
+                Arguments = @"run --project SubProcess",
                 RedirectStandardOutput = true,
                 RedirectStandardError = true,
                 RedirectStandardInput = true,
             };
-            using Process cmdProcess = new Process();
-            DataReceivedEventHandler outputReceived = delegate (object o, DataReceivedEventArgs e) { Console.WriteLine("<StdOut> " + e.Data); };
-            DataReceivedEventHandler errorReceived = delegate (object o, DataReceivedEventArgs e) { Console.WriteLine(e.Data); };
+            using Process cmdProcess = new();
+            static void outputReceived(object o, DataReceivedEventArgs e) { Console.WriteLine("<StdOut> " + e.Data); }
+            static void errorReceived(object o, DataReceivedEventArgs e) { Console.WriteLine(e.Data); }
 
             cmdProcess.StartInfo = cmdStartInfo;
             cmdProcess.OutputDataReceived += outputReceived;

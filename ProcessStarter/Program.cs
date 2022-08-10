@@ -12,8 +12,8 @@ namespace ProcessStarter
             {
                 UseShellExecute = false,
                 CreateNoWindow = true,
-                FileName = @"C:\Program Files\dotnet\dotnet.exe",
-                Arguments = @"C:\Users\nicolas.vandeginste\source\repos\ProcessRepro\ProcessRepro\bin\Debug\net5.0\ProcessRepro.dll",
+                FileName = @"dotnet",
+                Arguments = @"run --project ProcessRepro",
                 RedirectStandardOutput = true,
                 RedirectStandardError = true,
                 RedirectStandardInput = true,
