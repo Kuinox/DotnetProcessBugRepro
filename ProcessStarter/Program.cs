@@ -29,7 +29,7 @@ namespace ProcessStarter
             cmdProcess.BeginErrorReadLine();
             cmdProcess.BeginOutputReadLine();
             cmdProcess.WaitForExit(int.MaxValue);
-            Console.WriteLine("Exited ?:"+cmdProcess.HasExited);
+            Console.WriteLine("HasExit is now 'true'. Now running WaitForExit().");
             cmdProcess.WaitForExit();
             Console.WriteLine("Exited !");
         }
